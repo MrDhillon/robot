@@ -1,4 +1,3 @@
-require 'item'
 
 class Weapon < Item
 

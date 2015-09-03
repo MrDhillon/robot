@@ -1,10 +1,8 @@
-require 'item'
 
 class BoxOfBolts < Item
 
-  def initialize(name = "Box of bolts" ,weight = 25)
-  @name = name
-  @weight = weight
+  def initialize
+    super("Box of bolts",25)
   end
 
   def feed(robot)

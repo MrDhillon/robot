@@ -1,4 +1,3 @@
-require 'weapon.rb'
 
 class Laser < Weapon
 

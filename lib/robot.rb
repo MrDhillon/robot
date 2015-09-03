@@ -1,5 +1,4 @@
-require 'item'
-require 'pry'
+
 
 class Robot
 
@@ -30,7 +29,7 @@ class Robot
   end
 
   def pick_up(item)
-    if items_weight >= 250
+    if item.weight + items_weight > 250
       return false
     end
     if item.respond_to? :damage
@@ -48,9 +47,19 @@ class Robot
   end
 
   def wound(attack_power)
-    @health -= attack_power
-    if @health < 0
-      @health = 0
+    heal!
+    @health = [@health - attack_power, 0].max
+  end
+
+  def attack(robot)
+    if robot.is_a?(Robot)
+      if @equipped_weapon
+        @equipped_weapon.hit(robot)
+      else
+      robot.wound(5)
+      end
+    else
+      raise UnattackableEnemy, "You can only attack a robot!"
     end
   end
 
@@ -61,14 +70,9 @@ class Robot
     end
   end
 
-  def attack(robot)
-    if @equipped_weapon
-      @equipped_weapon.hit(robot)
-    else
-    robot.wound(5)
+  def heal!
+    if @health <= 0
+      raise RobotAlreadyDeadError, "The robot it dead!"
     end
   end
-
-
 end
-
