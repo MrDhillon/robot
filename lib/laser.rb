@@ -6,6 +6,7 @@ class Laser < Weapon
     @name = name
     @weight = weight
     @damage = damage
+    super
   end
 
 

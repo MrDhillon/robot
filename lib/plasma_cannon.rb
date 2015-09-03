@@ -5,6 +5,7 @@ class PlasmaCannon < Weapon
     @name = name
     @weight = weight
     @damage = damage
+    super
   end
 
 
